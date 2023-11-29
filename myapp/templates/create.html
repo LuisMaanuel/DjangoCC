@@ -1,0 +1,23 @@
+<h1>Añadir nueva</h1>
+<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum, neque tempore. Et laudantium unde autem, vero officiis distinctio dignissimos consequuntur deleniti laborum ea! Inventore quas iste asperiores, eius voluptatem doloribus!</p>
+
+<nav>
+    
+    <a href="/">
+        <button>Inicio</button>
+      </a>
+    </nav>
+    <nav>   
+      <a href="/projects">
+        <button>Computadoras</button>
+      </a>
+
+</nav>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button>
+        Guardar
+    </button>
+</form>

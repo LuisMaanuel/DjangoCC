@@ -1,0 +1,51 @@
+<h1>Projects</h1>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam illo deserunt adipisci quod corporis nesciunt, laudantium commodi vel cumque eaque facilis dicta! Vero aliquam consectetur laboriosam cupiditate dolor beatae deserunt quasi et, quas ad totam quod architecto, quis soluta excepturi doloremque in quidem labore minima maiores id quae! Sit, quos quaerat? A reprehenderit ipsum ex pariatur, corporis, accusamus soluta nesciunt dolor consectetur in atque consequuntur voluptatibus facilis vero, ipsam assumenda maxime minus obcaecati at. Officia quisquam accusantium rem culpa eos, quia pariatur repellendus, similique sed, quibusdam numquam sint? In nesciunt quae doloremque itaque sint, veritatis error quaerat consequuntur aliquam quod!</p>
+
+<nav>
+  <a href="/">
+        <button>Inicio</button>
+    </a>
+  </nav>
+  <nav>
+    <a href="/create">
+      <button>Añadir una nueva</button>
+    </a>
+
+  </nav>
+
+{% if mensaje == 'Eliminado' %}
+<div>
+  Registro eliminado exitosamente
+</div>
+{% endif %}
+
+
+{% if mensaje == 'Editado' %}
+<div>
+  Registro editado exitosamente
+</div>
+{% endif %}
+
+{% for project in projects %}
+  <div>
+    <h1>{{ project.name }}</h1>
+    
+    <form method="POST" action="{% url 'editar' id_comp=project.id %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Actualizar</button>
+    </form>
+
+
+    <form method="POST" action="{% url 'delete' id_comp=project.id %}" >
+      {% csrf_token %}
+      <button type="submit" style="background-color: #ff0000; color: #ffffff;">Eliminar</button>
+    </form>
+    
+    <ul>
+      {% for key, value in project.items %}
+        <li>{{ key }}: {{ value }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endfor %}
